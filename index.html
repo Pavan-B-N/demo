@@ -8,22 +8,35 @@
 </head>
 <body>
     <input type="file" id="file">
-    <button onclick="share()">share</button>
+    <button onclick="share()">share URL</button>
+           <button onclick="shareFile()">share File </button>
     <script>
 
         async function share(){
-            const file=document.getElementById("file")[0]
+
             if(navigator.share){
                 
                 const data={
-                    file,
                     title:"Title",
-                    url:'https://share.com'
+                    text:"text",
+                    url:'https://fileshareapp.netlify.com'
                 }
                 const res=await navigator.share(data)
                 console.log(res)
             }
         }
+        
+        async function shareFile(){
+                    const files=document.getElementById("file").files
+                           const data={
+                    title:"Title",
+                    text:"text",
+                   files
+                }
+                const res=await navigator.share(data)
+                console.log(res)
+        }
+            
     </script>
 </body>
 </html>
