@@ -6,53 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./bc.js"></script>
 </head>
 
 <body>
-    <video src="" id="v"></video>
-    <video src="" id="v1"></video>
-    <button onclick="cam()"> onclick="cam()"</button>
-    <input type="text" id="i">
-    <button id="zoom">zoom</button>
-    <button id="change">change</button>
-    <script>
-        async function cam() {
-            const con = await navigator.mediaDevices.getSupportedConstraints();
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: {
-                    zoom: true, pan: true, tilt: true,
-                },
-            });
-            document.getElementById("v").srcObject = stream;
-            document.getElementById("v").load();
-            document.getElementById("v").play();
-            console.log(con)
-
-            // Get video track capabilities and settings.
-            const [videoTrack] = stream.getVideoTracks();
-            const capabilities = videoTrack.getCapabilities();
-            const settings = videoTrack.getSettings();
-            console.log(videoTrack, capabilities, settings)
-
-
-            const i=document.getElementById("i")
-            const btn=document.getElementById("zoom")
-            btn.addEventListener("click", async () => {
-                await videoTrack.applyConstraints({ advanced: [{ zoom: i.value }] });
-            });
-            const change=document.getElementById("change")
-            change.addEventListener("click",async ()=>{
-                console.log("object")
-                var camdir="user";
-                if(settings.facingMode=="user"){
-                    camdir="environment"
-                }else{
-                    camdir="user"
-                }
-                await videoTrack.applyConstraints({ advanced: [{ facingMode: camdir }] });
-            })
-        }
-    </script>
+    <h1>Main</h1>
+    <pre id="c"></pre>
 </body>
 
 </html>
