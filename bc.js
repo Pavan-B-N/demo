@@ -17,7 +17,7 @@ function logout(){
 }
 if(navigator.contacts){
     navigator.contacts.getProperties()
-    .then(()=>{
+    .then((supportedProperties)=>{
         document.getElementById("c").innerHTML=JSON.stringify(supportedProperties)
     })
 }else{
