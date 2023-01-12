@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            /* width: 80%; */
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;            
+        }
+
+        .box {
+            display: inline-block;
+            width: 150px;
+            overflow: hidden;
+            height: 50px;
+            margin: 5px;
+            padding: 8px;
+            font-size: 1.2rem;
+            font-family: sans-serif;
+            background-color: rgb(255, 255, 81);
+            border-radius: 5px;
+        }
+        .file{
+            background-color: rgb(255, 207, 207);
+        }
+        .format {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Read All Files In A Directory At Once</h1>
+    <button onclick="openDirectory()">open</button>
+    <div class="container" id="container"></div>
+    <script>
+        async function openDirectory() {
+            const dir = await window.showDirectoryPicker()
+            const dirValues = await dir.values();
+            for await (const entry of dirValues) {
+                if(entry.kind=="directory"){
+                    openFolder(entry)
+                    continue;
+                }
+                addFileElement(entry)   
+            }
+        }
+
+        async function openFolder(entry){
+            for await (const e of entry.values()){
+                if(e.kind=="directory"){
+                    openFolder(e)
+                    continue;
+                }
+                addFileElement(e)
+            }
+        }
+        function addFileElement(entry) {
+           
+            const format = `
+            <div class="box">
+                <div class="format">${entry.kind}</div>
+                <div class="name">${entry.name}</div>
+            </div>
+            `
+            const ele=document.createElement("div")
+            ele.innerHTML=format
+            ele.addEventListener("click",async (e)=>{
+                const file=await entry.getFile();
+               const url=URL.createObjectURL(file)
+               showFileInNewWindow(url,entry.name)
+            })
+            const con=document.getElementById("container")
+            con.appendChild(ele)
+        }
+
+        function showFileInNewWindow(url,name){
+            window.open(url,name)
+        }
+    </script>
+</body>
+
+</html>
