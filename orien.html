@@ -12,15 +12,33 @@
     <h1>Screen orientation API</h1>
     <div id="ele"></div>
     <button onclick="track()">track</button>
+    <button onclick="lock()">lock</button>
+    <button onclick="unlock()">unlock</button>
     <script>
+        let orien;
         function track() {
             const o = screen.orientation || screen.webkitOrientation || screen.mozOrientation || screen.msOrientation
+            orien=o;
             document.getElementById("ele").innerHTML = "Angle " + o.angle + " type " + o.type;
             o.onchange=(e)=>{
                 document.getElementById("ele").innerHTML = "Angle " + e.target.angle + " type " + e.target.type;   
             }
         }
         track()
+        async function lock(){
+           try{
+            await orien.lock("portrait-primary")
+           }catch(err){
+            alert(err)
+           }
+        }
+        async function unlock(){
+           try{
+            await orien.unlock("portrait-primary")
+           }catch(err){
+            alert(err)
+           }
+        }
     </script>
 </body>
 
