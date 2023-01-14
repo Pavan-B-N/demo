@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Screen orientation API</h1>
+    <div id="ele"></div>
+    <button onclick="track()">track</button>
+    <script>
+        function track() {
+            const o = screen.orientation || screen.webkitOrientation || screen.mozOrientation || screen.msOrientation
+            document.getElementById("ele").innerHTML = "Angle " + o.angle + " type " + o.type;
+            o.onchange=(e)=>{
+                document.getElementById("ele").innerHTML = "Angle " + e.target.angle + " type " + e.target.type;   
+            }
+        }
+        track()
+    </script>
+</body>
+
+</html>
