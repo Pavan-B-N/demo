@@ -1,0 +1,18 @@
+.videoContainer{
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    
+}
+#video{
+    width: 500px;
+    margin:10px auto;
+    border: 2px solid;
+    display: none;
+}
+.videoContainer button{
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
