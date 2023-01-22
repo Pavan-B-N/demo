@@ -8,7 +8,7 @@ async function startRecording() {
         // let mediaDevices=navigator.mediaDevices || navigator.webkitMediaDevices || navigator.mozMediaDevices || navigator.msMediaDevices
         // mediaDevices.getUserMedia=mediaDevices.getUserMedia || mediaDevices.webkitGetUserMedia || mediaDevices.mozGetUserMedia || mediaDevices.msGetUserMedia
 
-        stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true })
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true })
     }catch(err){
         alert(err.message)
     }
