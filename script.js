@@ -34,4 +34,5 @@ function removeTracks() {
         track.stop()
     })
     video.style.display = "none"
+    
 }
