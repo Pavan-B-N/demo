@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .btn{
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
     <script src="script.js" defer></script>
 </head>
-
 <body>
-    <div class="videoContainer">
-        <video src="" id="video" muted controls autoplay></video>
-        <button onclick="startRecording()">Start Recording</button>
-        <button onclick="stopRecording()">End Recording</button>
-    </div>
+    <h1>Music Player Implementation using Doubly Linked List</h1>
+    <h2 id="name"></h2>
+    <button class="btn" onclick="mp.previousMusic()">previous</button>
+    <button class="btn" onclick="mp.playMusic()">play</button>
+    <button class="btn" onclick="mp.pauseMusic()">pauseMusic</button>
+    <button class="btn" onclick="mp.nextMusic()">next</button>
 </body>
-
 </html>
