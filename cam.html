@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cam</h1>
+    <div id="cams">
+
+    </div>
+    <script>
+        const list=document.getElementById("cams")
+        async function listDevices(){
+            let devices=await navigator.mediaDevices.enumerateDevices()
+            console.log(devices)
+            devices.forEach(device=>{
+                if(device.kind=="videoinput"){
+                    list.innerHTML+=`
+                    <h2> ${device.label}</h2>
+                    `
+                }
+            })
+        }
+        listDevices()
+    </script>
+</body>
+</html>
